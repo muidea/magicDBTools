@@ -4,18 +4,18 @@ LDFLAGS := -X 'main.time=$(date -u --rfc-3339=seconds)' -X 'main.git=$(git log -
 
 all: fmt vet build
 
-build: mysqlClone mysqlExecute mongoClone redisClone
+build: mysqlCloneBuild mysqlExecuteBuild mongoCloneBuild redisCloneBuild
 
-mysqlClone:
+mysqlCloneBuild:
 	env CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o bin/mysqlClone ./mysqlClone
 
-mysqlExecute:
+mysqlExecuteBuild:
 	env CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o bin/mysqlExecute ./mysqlExecute
 
-mongoClone:
+mongoCloneBuild:
 	env CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o bin/mongoClone ./mongoClone
 
-redisClone:
+redisCloneBuild:
 	env CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o bin/redisClone ./redisClone
 
 fmt:
